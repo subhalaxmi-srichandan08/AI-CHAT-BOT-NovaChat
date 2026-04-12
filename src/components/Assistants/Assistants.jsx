@@ -4,7 +4,7 @@ import { Assistant as OpenAIAssistant } from "../../assistants/openai";
 import { Assistant as DeepSeekAIAssistant } from "../../assistants/deepseekai";
 import { Assistant as AnthropicAIAssistant } from "../../assistants/anthropicai";
 import { Assistant as XAIAssistant } from "../../assistants/xai";
-import styles from "./Assistant.module.css";
+import styles from "./Assistants.module.css";
 
 const assistantMap = {
   googleai: GoogleAIAssistant,
