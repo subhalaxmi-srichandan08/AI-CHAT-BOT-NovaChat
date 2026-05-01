@@ -2,7 +2,14 @@ import styles from "./Theme.module.css";
 
 export function Theme() {
   function handleValueChange(event) {
-    const meta = document.querySelector('meta[name="color-scheme"]');
+    let meta = document.querySelector('meta[name="color-scheme"]');
+
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "color-scheme";
+      document.head.appendChild(meta);
+    }
+
     meta.setAttribute("content", event.target.value);
   }
 

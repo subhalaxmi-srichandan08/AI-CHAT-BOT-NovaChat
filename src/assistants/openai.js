@@ -1,16 +1,27 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPEN_AI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+function createOpenAIClient(baseURL) {
+  const apiKey = import.meta.env.VITE_OPEN_AI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error(
+      "Missing VITE_OPEN_AI_API_KEY. Set your OpenAI API key in .env.local or your environment."
+    );
+  }
+
+  return new OpenAI({
+    apiKey,
+    baseURL,
+    dangerouslyAllowBrowser: true,
+  });
+}
 
 export class Assistant {
   #client;
   #model;
 
-  constructor(model = "gpt-4o-mini", client = openai) {
-    this.#client = client;
+  constructor(model = "gpt-4o-mini", client) {
+    this.#client = client ?? createOpenAIClient();
     this.#model = model;
   }
 

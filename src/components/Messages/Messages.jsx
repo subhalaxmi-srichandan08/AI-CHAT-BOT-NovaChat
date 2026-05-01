@@ -38,7 +38,9 @@ export function Messages({ messages }) {
             {messages.map(({ role, content }, index) => (
               // Message
               <div key={index} className={styles.Message} data-role={role}>
-                <Markdown className={styles.Markdown}>{content}</Markdown>
+                <div className={styles.Markdown}>
+                  <Markdown>{content}</Markdown>
+                </div>
               </div>
             ))}
           </div>

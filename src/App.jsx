@@ -5,6 +5,7 @@ import { Chat } from "./components/Chat/Chat";
 import { Assistant } from "./components/Assistants/Assistants";
 import { Theme } from "./components/Theme/Theme";
 import styles from "./App.module.css";
+import logo from "./assets/ai-chat-bot.jpg";
 
 function App() {
   const [assistant, setAssistant] = useState();
@@ -52,7 +53,7 @@ function App() {
   return (
     <div className={styles.App}>
       <header className={styles.Header}>
-        <img className={styles.Logo} src="/chat-bot.png" />
+        <img className={styles.Logo} src={logo} />
         <h2 className={styles.Title}>AI Chatbot</h2>
       </header>
 

@@ -5,3 +5,13 @@
   border-radius: 16px;
   overflow-y: auto;
 }
+
+.EmptyState {
+  min-height: 280px;
+  display: grid;
+  place-content: center;
+  padding: 2rem;
+  color: #555;
+  text-align: center;
+  font-size: 1rem;
+}

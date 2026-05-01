@@ -1,19 +1,29 @@
 import { GoogleGenAI } from "@google/genai";
 
-const googleai = new GoogleGenAI({
-  apiKey: import.meta.env.VITE_GOGGLE_AI_API_KEY, // not yet configured
-});
-
 export class Assistant {
+  #client;
   #chat;
   name = "googleai";
 
   constructor(model = "gemini-2.0-flash") {
-    this.#chat = googleai.chats.create({ model });
+    const apiKey = import.meta.env.VITE_GOOGLE_AI_API_KEY;
+
+    if (!apiKey) {
+      throw new Error(
+        "Missing VITE_GOOGLE_AI_API_KEY. Set your Google AI API key in .env.local or your environment."
+      );
+    }
+
+    this.#client = new GoogleGenAI({
+      apiKey,
+      dangerouslyAllowBrowser: true,
+    });
+
+    this.#chat = this.#client.chats.create({ model });
   }
 
   createChat(history) {
-    this.#chat = googleai.chats.create({
+    this.#chat = this.#client.chats.create({
       model: this.#chat.model,
       history: history
         .filter(({ role }) => role !== "system")

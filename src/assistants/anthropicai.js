@@ -1,16 +1,26 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic({
-  apiKey: import.meta.env.VITE_ANTHROPIC_AI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+function createAnthropicClient() {
+  const apiKey = import.meta.env.VITE_ANTHROPIC_AI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error(
+      "Missing VITE_ANTHROPIC_AI_API_KEY. Set your Anthropic API key in .env.local or your environment."
+    );
+  }
+
+  return new Anthropic({
+    apiKey,
+    dangerouslyAllowBrowser: true,
+  });
+}
 
 export class Assistant {
   #client;
   #model;
 
-  constructor(model = "claude-3-5-haiku-latest", client = anthropic) {
-    this.#client = client;
+  constructor(model = "claude-3-5-haiku-latest", client) {
+    this.#client = client ?? createAnthropicClient();
     this.#model = model;
   }
 
