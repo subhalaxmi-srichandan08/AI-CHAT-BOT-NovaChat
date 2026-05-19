@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Sidebar } from "./components/Sidebar/Sidebar";
+import { Sidebar } from "./components/sidebar/Sidebar";
 import { Chat } from "./components/Chat/Chat";
 import { Assistant } from "./components/Assistants/Assistants";
 import { Theme } from "./components/Theme/Theme";
