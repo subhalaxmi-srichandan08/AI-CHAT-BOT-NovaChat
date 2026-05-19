@@ -6,7 +6,7 @@ export class Assistant {
   name = "googleai";
 
   constructor(model = "gemini-2.0-flash") {
-    const apiKey = process.env.VITE_GOOGLE_AI_API_KEY;
+    const apiKey = import.meta.env.VITE_GOOGLE_AI_API_KEY;
 
     if (!apiKey) {
       throw new Error(
